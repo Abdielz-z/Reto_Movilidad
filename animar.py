@@ -7,8 +7,20 @@ import Carro
 
 car = Carro.Carro(16.6667, 600)
 tabla = table.table(car)
-for i in range(1, 100):
+for i in range(1, 80):
     points = tabla.regreso()
+for j in range(0, 18):
+    tabla.vuelta()
+    
+for l in range(1, 20):
+    points =  tabla.broom()
+    
+for k in range(1, 54):
+    tabla.vuelta()
+    
+for l in range(1, 20):
+    points =tabla.broom()
+    
 #points = car.Carro_corre()
 fig, ax = plt.subplots(1, 1)
 fig.set_size_inches(15, 9)
@@ -23,8 +35,8 @@ def animate(i):
     ax.plot(point[0], point[1], color='green', 
             label='original', marker='o')
     # Set the x and y axis to display a fixed range
-    ax.set_xlim([0, 700])
-    ax.set_ylim([0, 10])
+    ax.set_xlim([0, 1500])
+    ax.set_ylim([0, 1500])
     
 ani = FuncAnimation(fig, animate, frames=len(points),
                     interval=66, repeat=False)
