@@ -1,12 +1,12 @@
 import math
 
 class Carro():
-    def __init__(self, vl, ddd):
+    def __init__(self, vl, ddd, x):
         self.v = 0
         self.vx = 0
         self.vy = 0
         self.vl = vl
-        self.x = 0
+        self.x = x
         self.y = 250
         self.ta = 10
         self.ax = 0
@@ -33,27 +33,33 @@ class Carro():
         
     
     def check_distance(self):
-        self.di = self.ddd_pas - self.x + self.vx 
-        self.df = self.ddd - self.x 
-        self.v2 = round(((self.vx) + (self.df - self.di)))
-        self.distancia = (self.vx * self.ta) - (self.v2*self.ta)
-        print(self.distancia)
+        if(self.ddd_pas == 9999 or self.ddd == 9999):
+            self.distancia = -100
+            self.v2 = self.v
+        else:
+            self.di = self.ddd_pas - self.x + self.vx 
+            self.df = self.ddd - self.x 
+            self.v2 = round(((self.vx) + (self.df - self.di)/self.tiempo_control))
+            self.v2 = self.v2 - (self.v2 / 15)
+            self.distancia = (self.vx * self.ta) - (self.v2*self.ta)
+        #print(self.distancia)
 
-        self.aver = self.vx + ((self.vl - self.vx)/self.ta)
+        self.aver = self.vx + ((self.vl - self.vx)/self.ta*self.tiempo_control)
 
  
     def movimiento(self):
         self.check_distance()
         ta = self.ta
-        if self.evitar == 999 or self.distancia < self.ddd-self.x-self.aver and self.evitar == 0:
+        if self.evitar == 999 or self.distancia < self.ddd-self.x-self.aver and self.evitar == 0 and self.ddd - self.x > 5:
             if self.start_lag < 7:
                 ta = self.ta + 14 - 2*self.start_lag
                 self.start_lag += 1
             self.aceleracion(self.vl, ta)
         else:
-            self.evitar = 0
+            self.evitar = 1
             vl = self.v2
             self.aceleracion(vl, ta)
+            
         
     
     def reset(self):
@@ -61,21 +67,33 @@ class Carro():
     
     def turnleft(self):
         self.angulo = self.angulo + 5
-        print(self.angulo)
+        #print(self.angulo)
     
     def update(self, ddd):
+        if ddd != 9999:
+            if self.v != 0:
+                ddd = ddd - ddd % self.v
+            ddd = ddd - self.v - 15
+            
         if(self.ddd_pas == 9999):
             self.ddd_pas = ddd
         else:   
             self.ddd_pas = self.ddd
         self.ddd = ddd
-        print(self.ddd, self.ddd_pas)
+        
+        if(self.ddd == 9999 and self.ddd_pas == 9999):
+            self.evitar = 0
+        
+        #print(self.ddd, self.ddd_pas)
         
             
     def Carro_corre(self):
         self.movimiento()
-        self.posiciones.append([self.x, self.y])
-        print(self.x, self.vx)
+        #print(self.ddd)
+        self.posiciones.append([self.x, self.y, self.ddd])
+        
         #print(self.ddd, self.ddd_pas ,self.di, self.df)
         #print(self.di, self.distancia, self.x, self.v2)
         return self.posiciones
+    
+    

@@ -11,7 +11,7 @@ class table():
     def regreso(self):
         self.Obs.update(self.vd)
         self.Obstaculo = self.Obs.x
-        v = self.Carro.vx
+        v = self.Carro.vx 
         x = self.Carro.x
         if(self.Obstaculo <= (x+(v*15))):
             ddd = self.Obstaculo

@@ -7,3 +7,4 @@ class Obstaculo():
         self.x = self.x + vx
         self.vd
         #print(self.x, self.vd)
+ 
