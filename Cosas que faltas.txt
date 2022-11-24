@@ -1,0 +1,18 @@
+Cosas que faltan en python:
+
+            1. lógica de vuelta
+            manualmente que se mueva justo a las pociciones de inicio y final que quiero
+            aaa me odio
+
+
+Ya funciona con los carros                4. uso correcto de direcciones (cuando la calle no sea pos)
+            5. delimitar el area semaforo
+
+6. lógica de automatización:
+    6.1. creación de agentes automática
+    6.2. automatizar la creación de posiciones
+    6.3. creación de las calles
+    6.4. que funcione
+
+7. lógica del semáforo
+    7.1 Que el semáforo lea los Carros y tome decisiones acorde

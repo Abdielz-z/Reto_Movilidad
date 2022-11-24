@@ -6,5 +6,4 @@ class Obstaculo():
     def update(self, vx):
         self.x = self.x + vx
         self.vd
-        #print(self.x, self.vd)
  
