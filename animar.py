@@ -8,23 +8,30 @@ import math
 import time
 
 
-
-car1 = Carro.Carro(12, 9999, 100,0, 100, 0)
-car2= Carro.Carro(8, 9999, 500, 0, 0, 0)
-car3 = Carro.Carro(12, -9999, 1000, 3, 500, 180)
+#vl, ddd, x, vueltaa, y, angulo)
+car1 = Carro.Carro(12, 9999, 100, 1, 100, 0, 0)
+car2= Carro.Carro(6, 9999, 500, 2, 1000, 270, 1)
+car3 = Carro.Carro(10, -9999, 1000, 0, 500, 180, 2)
 sem = semaforo.Sem(600, 100)
 sem2 = semaforo.Sem(400, 500)
-semaforos = [sem, sem2]
+sem3 = semaforo.Sem(500, 300)
+#sem4 = semaforo.Sem(608, 800)
+semaforos = [sem, sem2, sem3]#, sem4]
 car = [car1, car2, car3]
 tabla = mamalon.table(car, semaforos)
 
-for i in range(1, 2500):
-    points = tabla.regreso()
+for i in range(1, 13000):
+    tabla.regreso()
+    
+points = tabla.regreso()
 
 fig, ax = plt.subplots(1, 1)
 fig.set_size_inches(14, 7)
 
 
+print(len(points[0]))
+print(len(points[1]))
+print(len(points[2]))
 
 def animate(i):
         ax.clear()
@@ -66,9 +73,9 @@ def animate(i):
   
  
 
-#print(points[0][25])
-#print(points[2][27])
-#print(points[2][25])
+print(points[0][33])
+print(points[2][33])
+print(points[2][33])
 
 
 ani = FuncAnimation(fig, animate, frames=len(points[0]), interval=0.01, repeat=False)

@@ -1,10 +1,12 @@
 import Obstaculos
 import math
+import Carro
 
 class table():
     def __init__(self, Carros, semaforos):
         self.Carros = Carros
-        self.posiciones = [[],[],[]]
+        self.posiciones = [None] * len(self.Carros)
+        self.numeroCarros = (len(self.Carros))
         self.sema = semaforos
         self.vuelta = 90
         self.count = 0
@@ -14,6 +16,24 @@ class table():
         for sem in self.sema:
             sem.update()
         for car in self.Carros:
+            
+            if 0 > car.x or 0 > car.y or 1000 < car.x or 1000 < car.y:
+                posicionesguardadas = self.posiciones[car.id]
+                
+                restantess = (13000-self.count) / 300
+                restantess = restantess - restantess%1
+                restantes = [0, 0, 0, 0, 0, 0,0, 0]
+                
+                for j in range(0, int(restantess)):    
+                    posicionesguardadas.append(restantes)
+                
+                
+                self.posiciones[car.id] = posicionesguardadas 
+                
+                
+                self.Carros.pop(i)
+                continue
+            
             
             if car.v != 0:
                 v = car.v
@@ -31,15 +51,16 @@ class table():
             x = car.x * powerx
             y = car.y * powery
 
-                
+            #if powery == -1:
+             #   print ("powery = -1", car.yy)                
             card = math.sqrt((x**2) + (y**2))
             pointing = 0
             
             if car.angulo == 0 or car.angulo ==  180:
-                limite = car.y
+                limite = car.y * powery
                 usa = x
             else:
-                limite = car.x
+                limite = car.x *powerx
                 usa = y
             
             
@@ -49,62 +70,77 @@ class table():
                 distancia = 9999
             else:
                 distancia = 9999
-            xx = 9999 * powerx
-            yy = 9999 * powery
+            xx = math.cos(math.radians(car.angulo)) *9999 
+            yy = math.sin(math.radians(car.angulo)) * 9999 
             
             
                 
             
-            """for car2 in self.Carros:
-                x2 = car2.x
-                y2 = car2.y
+            for car2 in self.Carros:
                 
+                x2 = car2.x * powerx
+                y2 = car2.y * powery
                 dis = math.sqrt((x2*x2)+(y2*y2))
+                if usa>= 0:
+                    limi = dis
+                else:
+                    limi = -dis
                 
                 if car.angulo == 0 or car.angulo ==  180:
                     limi = y2
-                    usada = x2
-                else:
+                    dis = x2
+                elif car.angulo == 90 or car.angulo ==  270:
                     limi = x2
-                    usada = y2
+                    dis = y2
                 
-                if usa <= usada  and dis <= distancia and car != car2 and limi - limite == 0 :# and car2.x-car.x <= v*15: 
+                if usa < dis  and dis <= distancia and car != car2 and  -3 < limi - limite < 3 :# and car2.x-car.x <= v*15: 
                     pointing = 0
-                    xx = x2
-                    yy = y2
+                    xx = x2*powerx
+                    yy = y2*powery
                     if car.v == 0:
                         distancia = dis
                     elif car.vy == 0:
-                        distancia = xx
+                        distancia = car2.x
                     elif car.vx == 0:
-                        distancia = yy
-                    elif car.angulo == 0:
-                        distancia = xx
+                        distancia = car2.y
+                    elif car.angulo == 0 or car.angulo == 180:
+                        distancia = car2.x
+                    elif car.angulo == 90 or car.angulo == 270:
+                        distancia = car2.y
                     elif xx-x > yy-y:
-                        distancia = yy
+                        distancia = car2.y
                     else:
-                        distancia = xx
-                        
-                if i == 0 and self.count <100:
-                    print(distancia)"""
+                        distancia = car2.x
                     
             
             for sem in self.sema:
+                
+                
+                if car.angulo == 0 and -2 < sem.y-car.y < 2 or car.angulo == 180 and -2 < sem.y-car.y < 2:
+                    car.y = sem.y
+                if car.angulo == 90 and -2 < sem.x-car.x < 2 or car.angulo == 270 and -2 < sem.x-car.x < 2:
+                    car.x = sem.x
+                
                 x2 = sem.x * powerx
                 y2 = sem.y * powery
                 dis = math.sqrt((x2*x2)+(y2*y2))
+                if usa>= 0:
+                    limi = dis
+                else:
+                    limi = -dis
                 
                 if car.angulo == 0 or car.angulo ==  180:
-                    limi = sem.y
+                    limi = y2
                     dis = x2
-                else:
-                    limi = sem.x
+                elif car.angulo == 90 or car.angulo ==  270:
+                    limi = x2
                     dis = y2
+                    #print(car.trabajo, car.distancia, car.v2, car.direccionM, car.y, car.ddd)
                     
                
                     
                     
-                if usa < dis and dis <= distancia and sem.y == car.y:
+                if usa < dis and dis <= distancia and limi == limite:
                     if(sem.estado == 0):
                         pointing = 0
                         xx = x2*powerx
@@ -123,28 +159,95 @@ class table():
                             distancia = sem.y
                         else:
                             distancia = sem.x
+                    elif sem.estado == 1:
+                        if car.vueltaa == 1 and car.safeToTurn == 1 or car.vueltaa == 2 and car.safeToTurn == 1:
+                            pointing = 0
+                            xx = x2*powerx
+                            yy = y2*powery
+                            if car.v == 0:
+                                distancia = dis
+                            elif car.vy == 0:
+                                distancia = sem.x
+                            elif car.vx == 0:
+                                distancia = sem.y
+                            elif car.angulo == 0 or car.angulo == 180:
+                                distancia = sem.x
+                            elif car.angulo == 90 or car.angulo == 270:
+                                distancia = sem.y
+                            elif xx-x > yy-y:
+                                distancia = sem.y
+                            else:
+                                distancia = sem.x
+                            
+                            if car.v < 0.01:
+                                car.safeToTurn = 0
+                        else:
+                            pointing = 1
+                            xx = math.cos(math.radians(car.angulo)) * 9999 * powerx
+                            yy = math.sin(math.radians(car.angulo)) * 9999 * powery
+                            distancia = 9999
                     else:
-                        pointing = 1
-                        xx = 9999 * powerx
-                        yy = 9999 * powery
-                        distancia = 9999
+                        if car.vueltaa == 1 and car.safeToTurn == 1 or car.vueltaa == 2 and car.safeToTurn == 1:
+                            pointing = 0
+                            xx = x2*powerx
+                            yy = y2*powery
+                            if car.v == 0:
+                                distancia = dis
+                            elif car.vy == 0:
+                                distancia = sem.x
+                            elif car.vx == 0:
+                                distancia = sem.y
+                            elif car.angulo == 0 or car.angulo == 180:
+                                distancia = sem.x
+                            elif car.angulo == 90 or car.angulo == 270:
+                                distancia = sem.y
+                            elif xx-x > yy-y:
+                                distancia = sem.y
+                            else:
+                                distancia = sem.x
+                            
+                            if car.v < 0.01:
+                                car.safeToTurn = 0
+                        else:
+                            pointing = 2
+                            xx = math.cos(math.radians(car.angulo)) * 9999 * powerx
+                            yy = math.sin(math.radians(car.angulo)) * 9999 * powery
+                            distancia = 9999
 
-                        
-            """if math.sqrt((dis - usa)**2) > v*50:
-                xx = math.cos(math.radians(car.angulo)) * 9999
-                yy = math.sin(math.radians(car.angulo)) * 9999 
-                
-                if usa >= 0:                    
-                    distancia = 9999 #maybe
-                else:
-                    distancia = 9999 * -1 #maybe"""
+            if  math.sqrt((dis - usa)**2) > 200:
+                if math.sqrt((dis - usa)**2) > v*10:
+                    xx = math.cos(math.radians(car.angulo)) * 9999
+                    yy = math.sin(math.radians(car.angulo)) * 9999 
+                    
+                    if usa >= 0:                    
+                        distancia = 9999 #maybe
+                    else:
+                        distancia = 9999 * -1 #maybe
                                 
-            self.count = self.count + 1                
+                                
+            if distancia == 9999 and usa < 0:
+                distancia = 9999 * -1
+                
+            #if self.count%100 == 0:
+             #   print(car.x,car.y)
+                
+            
+
             ddd = distancia
             
             car.update(ddd, xx, yy, pointing)
-            self.posiciones[i] = car.Carro_corre()
+            self.posiciones[car.id] = car.Carro_corre()
             i += 1
+            
+        self.count = self.count + 1  
+
+        if self.count %1000 == 0:
+            carNuevo = Carro.Carro(12, 9999, 100, 0, 100, 0, self.numeroCarros)
+            posicionN = [0,0] * len(self.posiciones[0])
+            carNuevo.posiciones = posicionN
+            self.numeroCarros = self.numeroCarros + 1
+            self.Carros.append(carNuevo)
+            self.posiciones.append(posicionN)
         
         return self.posiciones
        
