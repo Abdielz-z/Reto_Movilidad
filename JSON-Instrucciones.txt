@@ -1,0 +1,35 @@
+El diccionario:
+
+El objeto que tiene todo es points, esta ubicado en el archivo animar.py
+
+Queremos convertir points, el cual son matrices dentro de matrices
+en un diccionario JSON para poder mandarle eso al Unity
+El objeto points ya tiene logica pero nose si asi nomas como matris
+se lo vamos a mandar a unity, creo que se tienen que poner titulos y 
+la mamada para que se pueda leer con JSON, te dejo como esta estructurado
+points para que lo empieces a ser en un diccionario JSON.
+
+Suerte bb
+
+--------------------------------------------------------------------------------
+
+Points se ve asi:
+
+[[carros], [semaforos]]
+
+    dentro de carros se ve asi:
+    [carro1, carro2, carro3, etc...]
+
+        dentro de estos carros se ve asi
+        [[x1, y1, id, skin],[x2, y2, id, skin],[x3, y3, id, skin], etc...]
+
+
+
+    y dentro de semaforos se ve asi:                <= los objetos de aqui son grupos de 4 semaforos
+    [semaforo1, semaforo2, semaforo3, etc...]
+
+        dentro de semaforo1 se veria asi:
+        [[sem1, sem2, sem3, sem4]]
+
+            dentro de sem1 se ve asi:
+            [[id, estado], [id, estado], [id, estado], [id, estado], etc...]

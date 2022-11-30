@@ -2,9 +2,9 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 #from Car import Carro
 import semaforo
+import contSem
 import mamalon
 import Carro
-import math
 import time
 
 
@@ -12,28 +12,33 @@ import time
 car1 = Carro.Carro(12, 9999, 100, 1, 100, 0, 0)
 car2= Carro.Carro(6, 9999, 500, 2, 1000, 270, 1)
 car3 = Carro.Carro(10, -9999, 1000, 0, 500, 180, 2)
-sem = semaforo.Sem(600, 100)
-sem2 = semaforo.Sem(400, 500)
-sem3 = semaforo.Sem(500, 300)
-#sem4 = semaforo.Sem(608, 800)
-semaforos = [sem, sem2, sem3]#, sem4]
-car = [car1, car2, car3]
-tabla = mamalon.table(car, semaforos)
+sem = semaforo.Sem(600, 100,0)
+sem2 = semaforo.Sem(400, 500,1)
+sem3 = semaforo.Sem(500, 300,2)
+sem4 = semaforo.Sem(608, 800,3)
 
-for i in range(1, 13000):
+semaforos = [sem, sem2, sem3, sem4]
+
+sem = contSem.ContSem(0, "que te", semaforos)
+
+semM = [sem]
+
+car = [car1, car2, car3]
+tabla = mamalon.table(car, semM)
+
+for i in range(1, 1000):
     tabla.regreso()
     
-points = tabla.regreso()
+points = tabla.imprime()
 
 fig, ax = plt.subplots(1, 1)
 fig.set_size_inches(14, 7)
 
 
-print(len(points[0]))
-print(len(points[1]))
-print(len(points[2]))
+print((points[1][0][0]))
 
-def animate(i):
+
+'''def animate(i):
         ax.clear()
         point = points[0][i]
         point2 = points[1][i]
@@ -82,4 +87,4 @@ ani = FuncAnimation(fig, animate, frames=len(points[0]), interval=0.01, repeat=F
 inicio = time.time()
 plt.show()
 fin = time.time()
-print(fin-inicio)
+print(fin-inicio)'''
