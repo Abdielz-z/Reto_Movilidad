@@ -40,7 +40,7 @@ class Carro():
         self.superx = 1
         self.supery = 1
         self.direccionM = 1
-        
+        self.skin = 0
     
     def angulos(self):
         if 0 <= self.angulo <= 90:
@@ -182,7 +182,7 @@ class Carro():
         self.movimiento()
         
         if self.step%1 == 0:
-            self.posiciones.append([self.x, self.y, self.id])
+            self.posiciones.append([self.x, self.y, self.id, self.skin])
         self.step = self.step + 1
         return self.posiciones
     
