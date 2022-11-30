@@ -1,7 +1,7 @@
 import math
 
 class Carro():
-    def __init__(self, vl, ddd, x, vueltaa, y, angulo, id):
+    def __init__(self, vl, x, vueltaa, y, angulo, id):
         self.id = id
         self.step = 0
         self.safeToTurn = 1
@@ -17,6 +17,7 @@ class Carro():
         self.v2 = 0
         self.start_lag = 0 
         self.posiciones = []
+        ddd = 9999
         self.ddd = ddd
         self.di = ddd
         self.df = ddd
@@ -182,7 +183,7 @@ class Carro():
         self.movimiento()
         
         if self.step%1 == 0:
-            self.posiciones.append([self.x, self.y, self.id, self.skin])
+            self.posiciones.append([self.x, self.y, self.id, self.skin, self.vl, self.vuelta])
         self.step = self.step + 1
         return self.posiciones
     

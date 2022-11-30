@@ -9,9 +9,9 @@ import time
 
 
 #vl, ddd, x, vueltaa, y, angulo)
-car1 = Carro.Carro(12, 9999, 100, 1, 100, 0, 0)
-car2= Carro.Carro(6, 9999, 500, 2, 1000, 270, 1)
-car3 = Carro.Carro(10, -9999, 1000, 0, 500, 180, 2)
+car1 = Carro.Carro(12, 100, 1, 100, 0, 0)
+car2= Carro.Carro(6, 500, 2, 1000, 270, 1)
+car3 = Carro.Carro(10, 1000, 0, 500, 180, 2)
 sem = semaforo.Sem(600, 100,0)
 sem2 = semaforo.Sem(400, 500,1)
 sem3 = semaforo.Sem(500, 300,2)

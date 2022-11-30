@@ -21,7 +21,7 @@ Points se ve asi:
     [carro1, carro2, carro3, etc...]
 
         dentro de estos carros se ve asi
-        [[x1, y1, id, skin],[x2, y2, id, skin],[x3, y3, id, skin], etc...]
+        [[self.x, self.y, self.id, self.skin, self.vl, self.vuelta],[self.x, self.y, self.id, self.skin, self.vl, self.vuelta],[self.x, self.y, self.id, self.skin, self.vl, self.vuelta], etc...]
 
 
 
