@@ -5,7 +5,7 @@ class Carro():
         self.id = id
         self.step = 0
         self.safeToTurn = 1
-        self.v = vl
+        self.v = 0
         self.vt = 0
         self.vx = 0
         self.vy = 0
@@ -43,6 +43,17 @@ class Carro():
         self.supery = 1
         self.direccionM = 1
         self.skin = 0
+        
+        if self.angulo == 0:
+            self.direccionS = 0
+        elif self.angulo == 90:
+            self.direccionS = 1
+        elif self.angulo == 180:
+            self.direccionS = 2
+        elif self.angulo == 270:
+            self.direccionS = 3
+        elif self.angulo == 360:
+            self.direccionS = 0
     
     def angulos(self):
         if 0 <= self.angulo <= 90:
@@ -180,14 +191,26 @@ class Carro():
             self.vl = self.vls
             self.safeToTurn = 1
             
+        if self.angulo == 0:
+            self.direccionS = 0
+        elif self.angulo == 90:
+            self.direccionS = 1
+        elif self.angulo == 180:
+            self.direccionS = 2
+        elif self.angulo == 270:
+            self.direccionS = 3
+        elif self.angulo == 360:
+            self.direccionS = 0
+            
     def Carro_corre(self):
         #if self.vueltaa == 2:
             #print(self.ddd, self.pointing, self.angulo, self.x, self.y, self.supery)
         
         self.movimiento()
         
-        if self.step%1 == 0:
-            self.posiciones.append([self.x, self.y, self.id, self.skin, self.vl, self.vuelta])
+
+        
+        self.posiciones.append([self.x, self.y, self.id, self.skin, self.vl, self.vuelta])
         self.step = self.step + 1
         return self.posiciones
     

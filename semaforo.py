@@ -1,5 +1,5 @@
 class Sem():
-    def __init__(self, x, y, id):
+    def __init__(self, x, y, id, direccionS):
         self.id = id
         self.estado = 0
         self.tiempoRestante = 0
@@ -7,7 +7,7 @@ class Sem():
         self.y = y
         self.fl = 0
         self.estados = [[self.id],[]]
-        
+        self.direccionS = direccionS
     def update(self):
         if self.fl == 0:
             if self.estado == 1:

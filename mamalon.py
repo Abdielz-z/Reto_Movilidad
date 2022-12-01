@@ -21,9 +21,9 @@ class table():
             if -5 > car.x or -5 > car.y or 1000 < car.x or 1000 < car.y:
                 posicionesguardadas = self.posiciones[car.id]
                 
-                restantess = (20-self.count) / 300
-                restantess = restantess - restantess%1
-                restantes = [0, 0, 0, 0, 0, 0,0, 0]
+                restantess = (497-self.count)
+                restantess = restantess
+                restantes = [0, 0, 0, 0, 0, 0]
                 
                 for j in range(0, int(restantess)):    
                     posicionesguardadas.append(restantes)
@@ -142,7 +142,7 @@ class table():
                 
                         
                         
-                    if usa < dis and dis <= distancia and limi == limite:
+                    if usa < dis and dis <= distancia and limi == limite and car.direccionS == sem.direccionS and not (dis-usa < 15 and car.v > 3):
                         if(sem.estado == 0):
                             pointing = 0
                             xx = x2*powerx
@@ -216,7 +216,7 @@ class table():
                                 yy = math.sin(math.radians(car.angulo)) * 9999 * powery
                                 distancia = 9999
 
-            if  math.sqrt((dis - usa)**2) > 200:
+            if  math.sqrt((dis - usa)**2) > 20:
                 if math.sqrt((dis - usa)**2) > v*10:
                     xx = math.cos(math.radians(car.angulo)) * 9999
                     yy = math.sin(math.radians(car.angulo)) * 9999 
@@ -243,7 +243,7 @@ class table():
             
         self.count = self.count + 1  
 
-        if self.count %1000 == 0 and self.count != 0:
+        if self.count %600 == 0 and self.count != 0:
             
                         
             
@@ -271,6 +271,7 @@ class table():
     def imprime(self):
         obsemaforos = []
         carros = self.posiciones
+        #print(carros)
         for sem in self.sema:
             obsemaforos.append(sem.estados)
         objetoRegreso = [carros, obsemaforos]
