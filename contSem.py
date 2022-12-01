@@ -24,7 +24,6 @@ class ContSem():
         elif carril1 == 3 and carril2 == 2:
             return True
         else:
-            print("!FALSEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
             return False
 
     def prenderSemaforo(self):
@@ -41,20 +40,18 @@ class ContSem():
             if i.estado != 0 and self.cambio == 1:
                 self.cambio = 0
                 
-            print("cambio ",self.cambio)
-        
                 
             
-
+        tiempo = -25
         for i in self.semaforos:    
             
-            if i.tiempoRestante < -25 and self.cambio == 1 and safe == 0:
+            if i.tiempoRestante < tiempo and self.cambio == 1:
+                tiempo = i.tiempoRestante
                 safe = 1
                 self.turno = 2
                 self.semid = i.id - self.id *10
             
             if i.tiempoRestante < -10 and safe == 0 and self.cambio == 1:
-                print("AAa",self.turno)
                 safe = 1
                 if self.turno == 0:
                     self.turno = 1
@@ -68,7 +65,24 @@ class ContSem():
                 self.prender = self.semid
                 self.cambio = 1
                 self.prendido = self.semid
-                self.prenderdespues = 99
+                calculoCarril = []
+                for i in self.carriles:
+                    calculoCarril.append(i[1])
+                
+                calculoCarril[self.prender] = 0
+                
+                carrilMax2 = calculoCarril.index(max(calculoCarril))
+                carrosM2 = max(calculoCarril)
+
+                
+                if self.isParalelo(self.prender, carrilMax2):
+                    self.prenderdespues = carrilMax2
+                    self.cambio = 2
+                    
+                else:
+                    self.prenderdespues = 99
+                    self.cambio = 1
+                
                 
             else:
             
@@ -96,9 +110,6 @@ class ContSem():
                     carrilMax2 = calculoCarril.index(min(calculoCarril))
                     carrosM2 = min(calculoCarril)
                 
-                
-                print("carrilMax ",carrilMax)
-                print("carrilMax2 ",carrilMax2)
                 #if carrosM != 0:
                     
                 if self.isParalelo(carrilMax, carrilMax2):
@@ -124,7 +135,7 @@ class ContSem():
                     self.semaforos[self.prender].fl = 0
                 else:
                     self.semaforos[self.prender].fl = 1
-                print(self.prender)
+                
                 self.semaforos[self.prender].tiempoRestante = 10
                 self.prender = 99
                 

@@ -1,4 +1,4 @@
-import Obstaculos
+import random
 import math
 import Carro
 
@@ -18,7 +18,7 @@ class table():
             sem.run(self.carriles)
         for car in self.Carros:
             
-            if 0 > car.x or 0 > car.y or 1000 < car.x or 1000 < car.y:
+            if -5 > car.x or -5 > car.y or 1000 < car.x or 1000 < car.y:
                 posicionesguardadas = self.posiciones[car.id]
                 
                 restantess = (13000-self.count) / 300
@@ -94,7 +94,7 @@ class table():
                     limi = x2
                     dis = y2
                 
-                if usa < dis  and dis <= distancia and car != car2 and  -3 < limi - limite < 3 :# and car2.x-car.x <= v*15: 
+                if usa < dis  and dis <= distancia and car != car2 and  -1 < limi - limite < 1 :# and car2.x-car.x <= v*15: 
                     pointing = 0
                     xx = x2*powerx
                     yy = y2*powery
@@ -243,8 +243,23 @@ class table():
             
         self.count = self.count + 1  
 
-        if self.count %1000 == 0:
-            carNuevo = Carro.Carro(12, 9999, 100, 0, 100, 0, self.numeroCarros)
+        if self.count %1000 == 0 and self.count != 0:
+            
+                        
+            
+            vl = 8.5 + random.randint(0, 15)*0.1
+            vueltaa = random.int(0, 2)
+            
+            cosas = [[vl, 80, vueltaa, 0, 90, self.numeroCarros],
+                     [vl, 75, vueltaa, 170, 270, self.numeroCarros],
+                     [vl, 0, vueltaa, 110, 0, self.numeroCarros],
+                     [vl, 250, vueltaa, 115, 180, self.numeroCarros],
+                     [vl, 175, vueltaa, 45, 90, self.numeroCarros],
+                     [vl, 170, vueltaa, 165, 270, self.numeroCarros]]
+
+            select = random.randint(0, 5)            
+            
+            carNuevo = Carro.Carro(cosas[select][0], cosas[select][1], cosas[select][2], cosas[select][3], cosas[select][4], cosas[select][5])
             posicionN = [0,0] * len(self.posiciones[0])
             carNuevo.posiciones = posicionN
             self.numeroCarros = self.numeroCarros + 1

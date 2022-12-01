@@ -29,7 +29,7 @@ class Sem():
             self.estado = 0
             self.fl = 0
         
-        print(self.id, self.estado, self.tiempoRestante)
+        #print(self.id, self.estado, self.tiempoRestante)
         
     def updatenon(self):
         self.estados[1].append(self.estado)

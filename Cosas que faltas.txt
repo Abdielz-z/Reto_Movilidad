@@ -1,3 +1,59 @@
 6. lógica de automatización:
     6.2. automatizar la creación de posiciones
     6.3. creación de las calles
+
+
+En unity:
+
+interseccion 0:
+sem 0 = 100 -5
+sem 1 = 95 -5
+sem 2 = 95 -10
+sem 3 = 100 -10
+
+interseccion 1:
+sem 0 = 5 0
+sem 1 = 0 0
+sem 2 = 0 -5
+sem 3 = 5 -5
+
+interseccion 3:
+sem 0 = 5 -75
+sem 1 = 0 -75
+sem 2 = 0 -80
+sem 3 = 5 -80
+
+
+esquina neg = -75 , -115
+pos = 185 55
+
+interseccion 0:
+sem 0 = 175 115
+sem 1 = 170 115
+sem 2 = 170 110
+sem 3 = 175 110
+
+interseccion 1:
+sem 0 = 80 115
+sem 1 = 75 115
+sem 2 = 75 110
+sem 3 = 80 110
+
+interseccion 3:
+sem 0 = 80 40
+sem 1 = 75 40
+sem 2 = 75 35
+sem 3 = 80 35
+
+
+esquina neg = 0 , 0
+pos = 260 170
+
+
+puntos spawn:
+1 = 80 0 90
+2 = 75 170    270
+3 = 0 110 0
+4 = 250 115 180
+5 = 175 45 90
+6 = 170 165 270

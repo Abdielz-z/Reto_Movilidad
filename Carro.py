@@ -10,6 +10,7 @@ class Carro():
         self.vx = 0
         self.vy = 0
         self.vl = vl
+        self.vls = vl
         self.x = x
         self.y = y
         self.ta = 3
@@ -90,11 +91,13 @@ class Carro():
     def decide(self):
         if  1 <= self.vuelta < self.pasosG and self.vueltaa == 1 or (self.vueltaa == 1 and self.v < 0.01 and self.pointing == 2) and self.ddd == 9999 or self.ddd == -9999 and (self.vueltaa == 1 and self.v < 0.01 and self.pointing == 2):
             if self.vuelta%2 == 0:
+                self.vl = 6
                 self.turnleft()
             self.vuelta = self.vuelta-1
             #print(self.x, self.y, self.vuelta, self.v, self.ddd, self.pointing)
         elif 1 <= self.vuelta < self.pasosG and self.vueltaa == 2 or (self.vueltaa == 2 and self.v < 0.01 and self.pointing != 0) and self.ddd == 9999 or self.ddd == -9999 and (self.vueltaa == 2 and self.v < 0.01 and self.pointing != 0):
             if self.vuelta%2 == 0:
+                self.vl = 10
                 self.turnright()
             self.vuelta = self.vuelta-1
             #print(self.x, self.y, self.vuelta, self.v, self.ddd, self.pointing)
@@ -174,6 +177,7 @@ class Carro():
         
         if self.vuelta == 0:
             self.vuelta = self.pasosG
+            self.vl = self.vls
             self.safeToTurn = 1
             
     def Carro_corre(self):

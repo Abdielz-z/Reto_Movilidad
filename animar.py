@@ -9,19 +9,43 @@ import time
 
 
 #vl, ddd, x, vueltaa, y, angulo)
-car1 = Carro.Carro(12, 100, 1, 100, 0, 0)
-car2= Carro.Carro(6, 500, 2, 1000, 270, 1)
-car3 = Carro.Carro(10, 1000, 0, 500, 180, 2)
-sem = semaforo.Sem(600, 100,0)
-sem2 = semaforo.Sem(400, 500,1)
-sem3 = semaforo.Sem(500, 300,2)
-sem4 = semaforo.Sem(608, 800,3)
+
+car1 = Carro.Carro(10, 80, 1, 0, 90, 0)
+car2= Carro.Carro(10, 75, 2, 170, 270, 1)
+car3 = Carro.Carro(10, 0, 0, 110, 0, 2)
+sem = semaforo.Sem(80, 40,0)
+sem2 = semaforo.Sem(75, 35,1)
+sem3 = semaforo.Sem(75, 40,2)
+sem4 = semaforo.Sem(80, 35,3)
+
+
 
 semaforos = [sem, sem2, sem3, sem4]
+sema0 = contSem.ContSem(0, "que te", semaforos)
 
-sem = contSem.ContSem(0, "que te", semaforos)
+sem = semaforo.Sem(80, 115, 10)
+sem2 = semaforo.Sem(75, 110, 11)
+sem3 = semaforo.Sem(75, 115, 12)
+sem4 = semaforo.Sem(80, 110, 13)
 
-semM = [sem]
+
+semaforos = [sem, sem2, sem3, sem4]
+sema1 = contSem.ContSem(1, "que te", semaforos)
+
+
+
+sem = semaforo.Sem(175, 115, 20)
+sem2 = semaforo.Sem(170, 110, 21)
+sem3 = semaforo.Sem(170, 115, 22)
+sem4 = semaforo.Sem(175, 110, 23)
+
+
+semaforos = [sem, sem2, sem3, sem4]
+sema2 = contSem.ContSem(2, "que te", semaforos)
+
+
+
+semM = [sema0, sema1, sema2]
 
 car = [car1, car2, car3]
 tabla = mamalon.table(car, semM)
@@ -29,16 +53,19 @@ tabla = mamalon.table(car, semM)
 for i in range(1, 1000):
     tabla.regreso()
     
-points = tabla.imprime()
+pointss = tabla.imprime()
+
+points = pointss[0]
 
 fig, ax = plt.subplots(1, 1)
 fig.set_size_inches(14, 7)
 
 
-print((points[1][0][0]))
+#print((points))
 
 
-'''def animate(i):
+
+def animate(i):
         ax.clear()
         point = points[0][i]
         point2 = points[1][i]
@@ -73,18 +100,14 @@ print((points[1][0][0]))
         ax.plot(point3[0], point3[1], color='red', label='original', marker='o')    
         ax.arrow(point3[0], point3[1], pp3, ppp3, head_width=32, head_length=50, fc='red', ec='red')
         
-        ax.set_xlim([0, 1000])
-        ax.set_ylim([0, 1000])
+        ax.set_xlim([0, 300])
+        ax.set_ylim([0, 300])
   
  
-
-print(points[0][33])
-print(points[2][33])
-print(points[2][33])
 
 
 ani = FuncAnimation(fig, animate, frames=len(points[0]), interval=0.01, repeat=False)
 inicio = time.time()
 plt.show()
 fin = time.time()
-print(fin-inicio)'''
+print(fin-inicio)
