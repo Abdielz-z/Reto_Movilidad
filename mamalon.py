@@ -21,7 +21,7 @@ class table():
             if -5 > car.x or -5 > car.y or 1000 < car.x or 1000 < car.y:
                 posicionesguardadas = self.posiciones[car.id]
                 
-                restantess = (13000-self.count) / 300
+                restantess = (20-self.count) / 300
                 restantess = restantess - restantess%1
                 restantes = [0, 0, 0, 0, 0, 0,0, 0]
                 

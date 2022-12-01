@@ -6,6 +6,7 @@ import contSem
 import mamalon
 import Carro
 import time
+import json
 
 
 #vl, ddd, x, vueltaa, y, angulo)
@@ -50,13 +51,23 @@ semM = [sema0, sema1, sema2]
 car = [car1, car2, car3]
 tabla = mamalon.table(car, semM)
 
-for i in range(1, 1000):
+for i in range(1, 20):
     tabla.regreso()
     
-pointss = tabla.imprime()
+points = tabla.imprime()
 
-points = pointss[0]
+x = {
+    "porfa":
+        {
+        "carros": points[0],
+         "semaforos": points[1]
+}
+}
 
+jsonStr = json.dumps(x)
+print(jsonStr)
+
+'''
 fig, ax = plt.subplots(1, 1)
 fig.set_size_inches(14, 7)
 
@@ -110,4 +121,4 @@ ani = FuncAnimation(fig, animate, frames=len(points[0]), interval=0.01, repeat=F
 inicio = time.time()
 plt.show()
 fin = time.time()
-print(fin-inicio)
+print(fin-inicio)'''
