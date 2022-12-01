@@ -21,8 +21,8 @@ class table():
             if -5 > car.x or -5 > car.y or 1000 < car.x or 1000 < car.y:
                 posicionesguardadas = self.posiciones[car.id]
                 
-                restantess = (497-self.count)
-                restantess = restantess
+                restantess = (2400-self.count)
+                restantess = restantess - restantess%1
                 restantes = [0, 0, 0, 0, 0, 0]
                 
                 for j in range(0, int(restantess)):    
@@ -243,12 +243,11 @@ class table():
             
         self.count = self.count + 1  
 
-        if self.count %600 == 0 and self.count != 0:
-            
+        if self.count % 80 == 0 and self.count != 0:
                         
             
             vl = 8.5 + random.randint(0, 15)*0.1
-            vueltaa = random.int(0, 2)
+            vueltaa = random.randint(0, 2)
             
             cosas = [[vl, 80, vueltaa, 0, 90, self.numeroCarros],
                      [vl, 75, vueltaa, 170, 270, self.numeroCarros],
@@ -260,7 +259,7 @@ class table():
             select = random.randint(0, 5)            
             
             carNuevo = Carro.Carro(cosas[select][0], cosas[select][1], cosas[select][2], cosas[select][3], cosas[select][4], cosas[select][5])
-            posicionN = [0,0] * len(self.posiciones[0])
+            posicionN = [[0,9999,0,9999,0,0]] * len(self.posiciones[0])
             carNuevo.posiciones = posicionN
             self.numeroCarros = self.numeroCarros + 1
             self.Carros.append(carNuevo)

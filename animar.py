@@ -50,18 +50,65 @@ semM = [sema0, sema1, sema2]
 car = [car1, car2, car3]
 tabla = mamalon.table(car, semM)
 
-for i in range(1, 20):
+for i in range(1, 2400):
     tabla.regreso()
     
 points = tabla.imprime()
 
+todo = []
+l=0
+for i in points [0]:
+    pp = []
+    for p in i:
+        
+        pp.append(p[0])
+        pp.append(p[1])
+        pp.append(p[2])
+        pp.append(p[3])
+        pp.append(p[4])
+        pp.append(p[5])
+    todo.append(pp)
+    l = l + 1
 
 x = {
     "dicc":
         {
         "carros": {
             "cantidad": len(points[0]),
-            "posiciones":points[0]
+            "posiciones":{
+                "car1": {"lista":todo[0]},
+                "car2": {"lista":todo[1]},
+                "car3": {"lista":todo[2]},
+                "car4": {"lista":todo[3]},
+                "car5": {"lista":todo[4]},
+                "car6": {"lista":todo[5]},
+                "car7": {"lista":todo[6]},
+                "car8": {"lista":todo[7]},
+                "car9": {"lista":todo[8]},
+                "car10": {"lista":todo[9]},
+                "car11": {"lista":todo[10]},
+                "car12": {"lista":todo[11]},
+                "car13": {"lista":todo[12]},
+                "car14": {"lista":todo[13]},
+                "car15": {"lista":todo[14]},
+                "car16": {"lista":todo[15]},
+                "car17": {"lista":todo[16]},
+                "car18": {"lista":todo[17]},
+                "car19": {"lista":todo[18]},
+                "car20": {"lista":todo[19]},
+                "car21": {"lista":todo[20]},
+                "car22": {"lista":todo[21]},
+                "car23": {"lista":todo[22]},
+                "car24": {"lista":todo[23]},
+                "car25": {"lista":todo[24]},
+                "car26": {"lista":todo[25]},
+                "car27": {"lista":todo[26]},
+                "car28": {"lista":todo[27]},
+                "car29": {"lista":todo[28]},
+                "car30": {"lista":todo[29]},
+                "car31": {"lista":todo[30]},
+                "car32": {"lista":todo[31]}
+                }
             },
          "semaforos": {
              "sem1": {
@@ -118,53 +165,3 @@ x = {
 
 
 jsonStr = json.dumps(x)
-print(jsonStr)
-
-'''fig, ax = plt.subplots(1, 1)
-fig.set_size_inches(14, 7)
-
-
-
-def animate(i):
-        ax.clear()
-        point = points[0][i]
-        point2 = points[1][i]
-        point3 = points[2][i]
-        
-        pp1 = point[2] - point[0]
-        ppp1 = point[3] - point[1]
-        pp2 = point2[2] - point2[0]
-        ppp2 = point2[3] - point2[1]
-        pp3 = point3[2] - point3[0]
-        ppp3 = point3[3] - point3[1]    
-        
-        """ if(pp1 < 0):
-            pp1 = 0
-        if(pp2 < 0):
-            pp2 = 0
-        if(pp3 < 0):
-            pp3 = 0
-        if(ppp1 < 0):
-            ppp1 = 0
-        if(ppp2 < 0):
-            ppp2 = 0
-        if(ppp3 < 0):
-            ppp3 = 0"""
-        
-        
-        ax.plot(point[0], point[1], color='green', label='original', marker='o')
-
-        ax.arrow(point[0], point[1], pp1, ppp1, head_width=32, head_length=50, fc='green', ec='green')
-        ax.plot(point2[0], point2[1], color='blue', label='original', marker='o')
-        ax.arrow(point2[0], point2[1], pp2, ppp2, head_width=32, head_length=50, fc='blue', ec='blue')
-        ax.plot(point3[0], point3[1], color='red', label='original', marker='o')    
-        ax.arrow(point3[0], point3[1], pp3, ppp3, head_width=32, head_length=50, fc='red', ec='red')
-        
-        ax.set_xlim([0, 300])
-        ax.set_ylim([0, 300])
-  
- 
-
-
-ani = FuncAnimation(fig, animate, frames=len(points[0]), interval=0.01, repeat=False)
-plt.show()'''

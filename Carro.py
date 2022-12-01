@@ -209,8 +209,8 @@ class Carro():
         self.movimiento()
         
 
-        
-        self.posiciones.append([self.x, self.y, self.id, self.skin, self.vl, self.vuelta])
+        if self.step %1 == 0:
+            self.posiciones.append([self.x, self.y, self.id, self.skin, self.vl, self.vuelta])
         self.step = self.step + 1
         return self.posiciones
     
